@@ -8,8 +8,8 @@ from src.utils.pdf_to_df import pdf_to_df
 from src.utils.split_region import split_regions
 
 # PDF 파일 경로 및 결과 CSV 파일 경로
-pdf_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/제22대_국회의원선거_국회의원지역선거구구역표.pdf'
-csv_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/result/제22대 국회 선거구.csv'
+pdf_file_path = 'C:/Users/num22/Desktop/Korean-election-district/data/제22대_국회의원선거_국회의원지역선거구구역표.pdf'
+csv_file_path = 'C:/Users/num22/Desktop/Korean-election-district/data/result/제22대 국회 선거구.csv'
 
 # PDF에서 데이터를 추출하여 DataFrame으로 변환
 df = pdf_to_df(pdf_file_path)
@@ -24,6 +24,7 @@ df.columns = df.columns.str.replace(r'\s+', '', regex=True)  # 모든 공백 문
 df = split_regions(df, '선거구역')
 df['선거구역'] = df['선거구역'].str.replace('일원', '', regex=False)  # '일원' 제거
 df['선거구역'] = df['선거구역'].str.replace(r'\s+', '', regex=True)  # 모든 공백 문자 제거
+df['선거구명'] = df['선거구명'].str.replace(r'\s+', '', regex=True)  # 모든 공백 문자 제거
 
 # 결과를 CSV로 저장
 df.to_csv(csv_file_path, index=False, encoding='utf-8-sig')

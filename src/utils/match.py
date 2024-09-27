@@ -1,9 +1,9 @@
 import pandas as pd
 
 # 파일 경로
-administrative_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/대한민국_행정동_utf8.csv'
-election_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/result/제22대 국회 선거구.csv'
-output_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/result/매칭결과.csv'
+administrative_file_path = 'C:/Users/num22/Desktop/Korean-election-district/data/대한민국_행정동_utf8.csv'
+election_file_path = 'C:/Users/num22/Desktop/Korean-election-district/data/result/제22대 국회 선거구.csv'
+output_file_path = 'C:/Users/num22/Desktop/Korean-election-district/data/result/매칭결과.csv'
 # jeonbuk_output_file_path = 'C:/Users/user/Desktop/Korean-election-district/data/result/전북특별자치도_매칭결과.csv'
 # jeonbuk_output_file_path2 = 'C:/Users/user/Desktop/Korean-election-district/data/result/전북특별자치도_매칭결과2.csv'
 # CSV 파일 읽기
@@ -18,6 +18,7 @@ admin_df['체크필요'] = ''  # 체크필요 열 추가
 admin_df['읍면동명'] = admin_df['읍면동명'].str.strip()
 admin_df['시군구명'] = admin_df['시군구명'].str.strip()
 election_df['선거구역'] = election_df['선거구역'].str.strip()
+election_df['선거구명'] = election_df['선거구명'].str.replace(r'\s+', '', regex=True)
 
 # 데이터 타입 통일
 admin_df = admin_df.astype(str)
